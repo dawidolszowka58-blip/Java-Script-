@@ -6,12 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 onclick="changeText(this);">
-    Kliknij w tekst</h1>
+    <p>Wpisz swoje imię</p>
+    <input type="text" id="fname" onfocus="myFunction(this)"><br>
     <script>
-        function changeText(id) {
-        id.innerHTML="nowy tekst";
-    }
+        function myFunction(id){
+            id.style.background="coral";
+        }
     </script>
 </body>
 </html>
