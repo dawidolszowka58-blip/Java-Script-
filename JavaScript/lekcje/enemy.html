@@ -1,0 +1,15 @@
+<script>
+    function Enemy (speed,power) {
+    this.live = 3;
+    this.speed = speed;
+    this.power = power;
+    this.print = function(){ 
+        console.log(`Przeciwnik ma ${this.live} zycia ,
+        ${this.speed}szybkosci i ${this.power} ataku`);
+    }   
+}
+ const enemy1 = new enemy (3,10);
+ enemy1.print();
+ const enemy2 = new enemy (5,15);
+ enemy2.print();
+</script>

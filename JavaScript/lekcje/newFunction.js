@@ -1,0 +1,13 @@
+newFunction();
+function newFunction() {
+    <script>
+        let teraz = new Date();
+        let godzina = teraz. getHours();
+        let minuty = teraz.getMinutes();
+        let sekundy= teraz.getSeconds();
+        document. write( "teraz jest: "+
+        godzina + ":"+
+        minuty + : "+
+        sekundy);
+    </script>;
+}
