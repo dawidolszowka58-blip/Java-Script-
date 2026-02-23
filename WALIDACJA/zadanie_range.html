@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEMENT RANGE</title>
+</head>
+<body> 
+    <p>ELEMENT RANGE </p>
+    <form>
+        <label>Wartosc liczbowa na suwaku: <br>1
+            <input type="range" min="1" max="100" id="zakres">100 <br>
+        </label>
+        <label> Wpisz wartosc:
+            <input type="number" min="1" max="100" id="pole_numeryczne"> <br>
+        </label>
+    </form> <br>
+    <p id="wynik"></p>
+    <script>
+        const zakres = document.querySelector("#zakres");
+        const pole_numeryczne = document.querySelector("#pole_numeryczne");
+        const wynik = document.querySelector("#wynik");
+        
+            liczba.addEventListener("input", () => {
+        const wartosc = liczba.value;
+
+        if (wartosc >= 1 && wartosc <= 100) {
+            zakres.value = wartosc;
+            wynik.textContent = "Wybrana wartość: " + wartosc;
+        } else {
+            wynik.textContent = "";
+        }
+    });  
+    
+    </script>
+    </body>
+</html>

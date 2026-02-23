@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie z owocem</title>
+</head>
+<body>
+    <p> Zadanie z owocem , Dawid Olszówka 4TIB</p>
+    <script>
+       const owoc = { 
+        nazwa: "Banan",
+        kolor: "Zółty",
+        cena : 3
+    };
+    localStorage.setItem("jedzenie",JSON.stringify(owoc));
+    const zapisanyOwoc= JSON.parse(localStorage.getItem("jedzenie"));
+    console.log(zapisanyOwoc);
+    </script>
+</body>
+</html>
