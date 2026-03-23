@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Animowany samochód</title>
+<style>
+  body { margin:0; background:#222; }
+  canvas { display:block; margin:auto; background:#333; }
+</style>
+</head>
+<body>
+
+<canvas id="canvas" width="800" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let wheelAngle = 0;
+let carX = 0;
+
+function drawCar(x, y) {
+
+    // Cień
+    ctx.shadowColor = "black";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 3;
+
+    // Gradient karoserii
+    let grad = ctx.createLinearGradient(x, y, x+200, y);
+    grad.addColorStop(0, "red");
+    grad.addColorStop(1, "darkred");
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(x, y, 200, 50);
+
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(x, y, 200, 50);
+
+    // Dach (lineTo)
+    ctx.beginPath();
+    ctx.moveTo(x+30, y);
+    ctx.lineTo(x+70, y-40);
+    ctx.lineTo(x+140, y-40);
+    ctx.lineTo(x+170, y);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Szyba (quadraticCurveTo)
+    ctx.beginPath();
+    ctx.moveTo(x+75, y-5);
+    ctx.quadraticCurveTo(x+105, y-35, x+135, y-5);
+    ctx.strokeStyle = "lightblue";
+    ctx.stroke();
+
+    // Funkcja rysowania koła
+    function drawWheel(cx, cy) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(wheelAngle);
+
+        // Koło (arc)
+        ctx.beginPath();
+        ctx.arc(0, 0, 20, 0, Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+
+        // Szprychy (lineTo)
+        ctx.setLineDash([5,5]);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(20, 0);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-20, 0);
+        ctx.strokeStyle = "white";
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.restore();
+    }
+
+    drawWheel(x+50, y+60);
+    drawWheel(x+150, y+60);
+
+    // Tekst
+    ctx.fillStyle = "white";
+    ctx.fillText("Auto", x+70, y+30);
+    ctx.strokeText("Auto", x+70, y+30);
+}
+
+function drawRoad() {
+    ctx.fillStyle = "#555";
+    ctx.fillRect(0, 250, 800, 150);
+
+    ctx.setLineDash([20, 15]);
+    ctx.strokeStyle = "yellow";
+    ctx.lineWidth = 4;
+
+    ctx.beginPath();
+    ctx.moveTo(0, 325);
+    ctx.lineTo(800, 325);
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawRoad();
+
+    drawCar(carX, 200);
+
+    wheelAngle += 0.1;
+    carX += 2;
+
+    if (carX > 800) carX = -200;
+
+    requestAnimationFrame(animate);
+}
+
+// Ustawienia tekstu
+ctx.font = "20px Arial";
+
+animate();
+</script>
+
+</body>
+</html>
