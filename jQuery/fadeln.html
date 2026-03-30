@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> hide() i show()</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <h1>toggle() - ukrywa element <=> pokazuje element</h1>
+    <button id="fadeIn">wystwietl diva</button>
+    <div style="width 300 ; height 300;
+            background-color:red ; display:none ";
+            id="div1">  
+    </div>
+    <script>
+        $( function(){
+            $("#fadeIn").click(function() {
+                $("#div1").fadeIn(4000);
+            });
+        });
+    </script>
+</body>
+</html>
